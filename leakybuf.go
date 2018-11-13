@@ -1,7 +1,6 @@
 package leakybuf
 
 import (
-	"fmt"
 	"sync"
 )
 
@@ -57,7 +56,6 @@ func (pool *SyncPool) Get(sizes ...int) []byte {
 		for i := 0; i < len(pool.classesSize); i++ {
 			if pool.classesSize[i] >= size {
 				mem := pool.classes[i].Get().(*[]byte)
-				fmt.Println(size, cap(*mem))
 				return (*mem)[:size]
 			}
 		}
